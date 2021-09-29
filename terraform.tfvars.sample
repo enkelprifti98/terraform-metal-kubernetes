@@ -1,0 +1,7 @@
+auth_token = "METAL_AUTH_TOKEN"
+organization_id = "METAL_ORG_ID"
+project_name = "k8s-bgp"
+metro = "dc"
+controller_plan = "c3.medium.x86"
+worker_plan = "c3.medium.x86"
+worker_count = 3
