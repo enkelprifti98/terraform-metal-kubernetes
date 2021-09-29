@@ -1,0 +1,91 @@
+variable "auth_token" {
+  description = "Your Packet API key"
+}
+
+variable "organization_id" {
+  description = "Your Packet organization where the project k8s-bgp will be created"
+}
+
+variable "project_name" {
+  description = "The project name, k8s-bgp is used as default if not specified"
+  default = "k8s-bgp"
+}
+
+variable "BGP_Password" {
+  description = "The project BGP password, empty string is no password"
+  default = ""
+}
+
+variable "docker_version" {
+  default = "20.10.7"
+}
+
+variable "kubernetes_version" {
+  description = "Kubernetes Version"
+  default     = "1.22.2"
+}
+
+variable "calico_version" {
+  description = "Calico Version"
+  default     = "v3.20"
+}
+
+variable "calicoctl_version" {
+  description = "Calicoctl Version"
+  default     = "v3.20.0"
+}
+
+variable "ccm_release" {
+  description = "Equinix Metal CCM Version"
+  default     = "v3.2.2"
+}
+
+variable "service_loadbalancer" {
+  description = "Kubernetes Service Load Balancer, choice of Kube-VIP and MetalLB or empty string for none"
+  default     = "Kube-VIP"
+}
+
+variable "kube_vip_release" {
+  description = "Kube-VIP Version"
+  default     = "v0.3.8"
+}
+
+variable "metallb_release" {
+  description = "MetalLB Version"
+  default     = "v0.10.2"
+}
+
+variable "storage" {
+  description = "Shared storage option of rook-ceph or empty string for none"
+  default     = "rook-ceph"
+}
+
+variable "rook_ceph_version" {
+  description = "Rook Ceph Version"
+  default     = "v1.7.4"
+}
+
+variable "kubernetes_port" {
+  description = "Kubernetes API Port"
+  default = "6443"
+}
+
+variable "kubernetes_dns_ip" {
+  description = "Kubernetes DNS IP"
+  default = "192.168.0.10"
+}
+
+variable "kubernetes_cluster_cidr" {
+  description = "Kubernetes Cluster Subnet"
+  default     = "172.16.0.0/12"
+}
+
+variable "kubernetes_service_cidr" {
+  description = "Kubernetes Service Subnet"
+  default     = "192.168.0.0/16"
+}
+
+variable "kubernetes_dns_domain" {
+  description = "Kubernetes Internal DNS Domain"
+  default     = "cluster.local"
+}
