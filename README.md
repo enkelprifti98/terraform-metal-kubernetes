@@ -121,7 +121,7 @@ Then check the persistent volumes:
 
 `kubectl get pv`
 
-Lastly, check the service of type `LoadBalancer:
+Lastly, check the wordpress service of type `LoadBalancer`:
 
 `kubectl get svc wordpress`
 
