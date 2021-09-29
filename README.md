@@ -24,10 +24,61 @@ Kubernetes Network:
 
 This Terraform script will deploy a cluster of 4, 1 controller and 3 worker nodes. It will allow you to use the service type `LoadBalancer` and make Persistent Volume Claims.
 
-Quickstart
-------------------------
 
-Make a copy of `terraform.tfvars.sample` as `terraform.tfvars`  and set the `auth_token` as well as `organization_id`. You can also configure other options like the server type, amount of worker nodes, kubernetes version etc.
+## Prerequisites
+
+To use these Terraform files, you need to have the following Prerequisites:
+
+- An Equinix Metal organization ID and [API key](https://metal.equinix.com/developers/api/)
+
+
+### Install Terraform
+
+Terraform is just a single binary. Visit their [download page](https://www.terraform.io/downloads.html), choose your operating system, make the binary executable, and move it into your path.
+
+Here is an example for **macOS**:
+
+```bash
+curl -LO https://releases.hashicorp.com/terraform/1.0.8/terraform_1.0.8_darwin_amd64.zip
+unzip terraform_1.0.8_darwin_amd64.zip
+chmod +x terraform
+sudo mv terraform /usr/local/bin/
+rm -f terraform_1.0.8_darwin_amd64.zipp
+```
+
+Here is an example for **Linux**:
+
+```bash
+curl -LO https://releases.hashicorp.com/terraform/1.0.8/terraform_1.0.8_linux_amd64.zip
+unzip terraform_1.0.8_linux_amd64.zip
+chmod +x terraform
+sudo mv terraform /usr/local/bin/
+rm -f terraform_1.0.8_linux_amd64.zip
+```
+
+## Download this project
+
+To download this project, run the following command:
+
+```bash
+git clone https://github.com/enkelprifti98/terraform-metal-kubernetes.git
+cd terraform-metal-kubernetes
+```
+
+## Initialize Terraform
+
+Terraform uses modules to deploy infrastructure. In order to initialize the modules simply run:
+
+```sh
+terraform init
+```
+
+This should download several modules into a hidden directory `.terraform`.
+
+
+## Configure your variables
+
+Make a copy of `terraform.tfvars.sample` as `terraform.tfvars`  and set the `auth_token` as well as `organization_id`. You can also configure other options like the server type, amount of worker nodes, etc.
 
 ```sh
 auth_token = "METAL_AUTH_TOKEN"

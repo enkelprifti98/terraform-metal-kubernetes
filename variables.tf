@@ -1,9 +1,9 @@
 variable "auth_token" {
-  description = "Your Packet API key"
+  description = "Your Equinix Metal API key"
 }
 
 variable "organization_id" {
-  description = "Your Packet organization where the project k8s-bgp will be created"
+  description = "Your Equinix Metal organization where the project k8s-bgp will be created"
 }
 
 variable "project_name" {
