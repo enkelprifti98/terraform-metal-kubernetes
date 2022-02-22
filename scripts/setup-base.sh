@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "[------ Begin install-sh -----]"
+echo "[------ Begin setup-base.sh -----]"
 
 # Base kubernetes requirements
 echo "Enable Forwarding"
@@ -20,4 +20,7 @@ sed -i.bak '/swap/s/^/#/g' /etc/fstab
 # Verify
 cat /proc/swaps
 
-echo "[----- install-bash.sh Complete -----]"
+# Install jq
+apt-get install -y jq
+
+echo "[----- setup-base.sh Complete -----]"
