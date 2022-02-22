@@ -30,6 +30,7 @@ This Terraform script will deploy a cluster of 4, 1 controller and 3 worker node
 To use these Terraform files, you need to have the following Prerequisites:
 
 - An Equinix Metal organization ID and [API key](https://metal.equinix.com/developers/api/)
+- `unzip` and `jq` packages installed on the local host that will be running the script. On Ubuntu you can install these with `apt-get install -y unzip jq`.
 
 
 ### Install Terraform
