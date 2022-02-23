@@ -37,24 +37,24 @@ To use these Terraform files, you need to have the following Prerequisites:
 
 Terraform is just a single binary. Visit their [download page](https://www.terraform.io/downloads.html), choose your operating system, make the binary executable, and move it into your path.
 
-Here is an example for **macOS**:
+Here is an example for **MacOS**:
 
 ```bash
-curl -LO https://releases.hashicorp.com/terraform/1.0.8/terraform_1.0.8_darwin_amd64.zip
-unzip terraform_1.0.8_darwin_amd64.zip
+curl -LO https://releases.hashicorp.com/terraform/1.1.6/terraform_1.1.6_darwin_amd64.zip
+unzip terraform_1.1.6_darwin_amd64.zip
 chmod +x terraform
 sudo mv terraform /usr/local/bin/
-rm -f terraform_1.0.8_darwin_amd64.zipp
+rm -f terraform_1.1.6_darwin_amd64.zip
 ```
 
 Here is an example for **Linux**:
 
 ```bash
-curl -LO https://releases.hashicorp.com/terraform/1.0.8/terraform_1.0.8_linux_amd64.zip
-unzip terraform_1.0.8_linux_amd64.zip
+curl -LO https://releases.hashicorp.com/terraform/1.1.6/terraform_1.1.6_linux_amd64.zip
+unzip terraform_1.1.6_linux_amd64.zip
 chmod +x terraform
 sudo mv terraform /usr/local/bin/
-rm -f terraform_1.0.8_linux_amd64.zip
+rm -f terraform_1.1.6_linux_amd64.zip
 ```
 
 ## Download this project
