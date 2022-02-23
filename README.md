@@ -110,8 +110,8 @@ Here we are using the deployment from the rook-ceph [guide](https://rook.io/docs
 Run the following:
 
 ```sh
-kubectl create -f https://raw.githubusercontent.com/rook/rook/master/cluster/examples/kubernetes/mysql.yaml
-kubectl create -f https://raw.githubusercontent.com/rook/rook/master/cluster/examples/kubernetes/wordpress.yaml
+kubectl create -f https://raw.githubusercontent.com/rook/rook/master/deploy/examples/mysql.yaml
+kubectl create -f https://raw.githubusercontent.com/rook/rook/master/deploy/examples/wordpress.yaml
 ```
 
 You can check the persistent volume claim requests:
