@@ -17,22 +17,22 @@ variable "BGP_Password" {
 }
 
 variable "docker_version" {
-  default = "20.10.7"
+  default = "20.10.12"
 }
 
 variable "kubernetes_version" {
   description = "Kubernetes Version"
-  default     = "1.22.2"
+  default     = "1.23.4"
 }
 
 variable "calico_version" {
   description = "Calico Version"
-  default     = "v3.20"
+  default     = "v3.22"
 }
 
 variable "calicoctl_version" {
   description = "Calicoctl Version"
-  default     = "v3.20.0"
+  default     = "v3.22.0"
 }
 
 variable "ccm_release" {
@@ -47,12 +47,12 @@ variable "service_loadbalancer" {
 
 variable "kube_vip_release" {
   description = "Kube-VIP Version"
-  default     = "v0.3.8"
+  default     = "v0.4.2"
 }
 
 variable "metallb_release" {
   description = "MetalLB Version"
-  default     = "v0.10.2"
+  default     = "v0.12.1"
 }
 
 variable "storage" {
@@ -62,7 +62,7 @@ variable "storage" {
 
 variable "rook_ceph_version" {
   description = "Rook Ceph Version"
-  default     = "v1.7.4"
+  default     = "v1.8.5"
 }
 
 variable "kubernetes_port" {
