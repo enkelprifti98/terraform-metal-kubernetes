@@ -7,6 +7,7 @@ eval "$(jq -r '@sh "HOST=\(.host)"')"
 
 # Get the gateway ip
 PEER_IP=$(ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null \
+    -i cluster-private-key.pem \
     root@$HOST route -n | grep '10.0.0.0' | awk '{$1=$1};1' | cut -d' ' -f2)
 
 # Produce a JSON object containing the join command
