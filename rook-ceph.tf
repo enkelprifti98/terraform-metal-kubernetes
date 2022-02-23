@@ -9,6 +9,46 @@ resource "null_resource" "rook_ceph" {
     private_key = tls_private_key.k8s_cluster_access_key.private_key_pem
   }
 
+  provisioner "remote-exec" {
+    inline = [
+      "sleep 10",
+      "kubectl create -f https://raw.githubusercontent.com/rook/rook/${var.rook_ceph_version}/deploy/examples/crds.yaml"
+    ]
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "kubectl create -f https://raw.githubusercontent.com/rook/rook/${var.rook_ceph_version}/deploy/examples/common.yaml"
+    ]
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "kubectl create -f https://raw.githubusercontent.com/rook/rook/${var.rook_ceph_version}/deploy/examples/operator.yaml"
+    ]
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "sleep 5",
+      "kubectl create -f https://raw.githubusercontent.com/rook/rook/${var.rook_ceph_version}/deploy/examples/cluster.yaml"
+    ]
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "sleep 5",
+      "kubectl create -f https://raw.githubusercontent.com/rook/rook/${var.rook_ceph_version}/deploy/examples/csi/rbd/storageclass.yaml"
+    ]
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "sleep 5",
+      "kubectl patch storageclass rook-ceph-block -p '{\"metadata\": {\"annotations\":{\"storageclass.kubernetes.io/is-default-class\":\"true\"}}}'"
+    ]
+  }
+
   provisioner "file" {
     source      = "${path.module}/templates/wait-for-rook-ceph-cluster-creation.sh.tpl"
     destination = "/tmp/wait-for-rook-ceph-cluster-creation.sh"
@@ -16,16 +56,7 @@ resource "null_resource" "rook_ceph" {
 
   provisioner "remote-exec" {
     inline = [
-      "sleep 10",
-      "kubectl create -f https://raw.githubusercontent.com/rook/rook/${var.rook_ceph_version}/cluster/examples/kubernetes/ceph/crds.yaml",
-      "kubectl create -f https://raw.githubusercontent.com/rook/rook/${var.rook_ceph_version}/cluster/examples/kubernetes/ceph/common.yaml",
-      "kubectl create -f https://raw.githubusercontent.com/rook/rook/${var.rook_ceph_version}/cluster/examples/kubernetes/ceph/operator.yaml",
       "sleep 5",
-      "kubectl create -f https://raw.githubusercontent.com/rook/rook/${var.rook_ceph_version}/cluster/examples/kubernetes/ceph/cluster.yaml", 
-      "sleep 5",
-      "kubectl create -f https://raw.githubusercontent.com/rook/rook/${var.rook_ceph_version}/cluster/examples/kubernetes/ceph/csi/rbd/storageclass.yaml",
-      "sleep 5",
-      "kubectl patch storageclass rook-ceph-block -p '{\"metadata\": {\"annotations\":{\"storageclass.kubernetes.io/is-default-class\":\"true\"}}}'",
       "chmod +x /tmp/wait-for-rook-ceph-cluster-creation.sh",
       "/tmp/wait-for-rook-ceph-cluster-creation.sh"
     ]
