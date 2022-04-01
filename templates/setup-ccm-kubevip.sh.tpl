@@ -18,6 +18,7 @@ stringData:
     {
       "apiKey": "${API-TOKEN}",
       "projectID": "${PROJECT-ID}",
+      "metro": "${METRO}",
       "loadbalancer": "kube-vip://"
     }
 EOF
