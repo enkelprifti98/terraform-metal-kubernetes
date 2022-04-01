@@ -7,6 +7,7 @@ data "template_file" "setup_ccm_metallb" {
   vars = {
     API-TOKEN         = var.auth_token
     PROJECT-ID        = metal_project.kubenet.id
+    METRO             = var.metro
     CCM-RELEASE       = var.ccm_release
     METALLB-RELEASE   = var.metallb_release
   }
