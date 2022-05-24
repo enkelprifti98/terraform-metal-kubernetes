@@ -37,12 +37,12 @@ variable "calicoctl_version" {
 
 variable "ccm_release" {
   description = "Equinix Metal CCM Version"
-  default     = "v3.2.2"
+  default     = "v3.4.2"
 }
 
 variable "service_loadbalancer" {
   description = "Kubernetes Service Load Balancer, choice of Kube-VIP and MetalLB or empty string for none"
-  default     = "Kube-VIP"
+  default     = "MetalLB"
 }
 
 variable "kube_vip_release" {
