@@ -30,6 +30,6 @@ apt-get install -y \
 	cri-tools
 
 # Make the kubelet use only the private IP to run it's management controller pods
-echo "KUBELET_EXTRA_ARGS=\"--node-ip=$LOCAL_IP --address=$LOCAL_IP --cloud-provider=external\"" > /etc/default/kubelet
+echo "KUBELET_EXTRA_ARGS=\"--node-ip=$LOCAL_IP --address=$LOCAL_IP --container-runtime-endpoint=unix:///run/containerd/containerd.sock --cloud-provider=external\"" > /etc/default/kubelet
 
 echo "[---- Done setting up kubernetes configurations -----]"
