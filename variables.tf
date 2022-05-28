@@ -18,7 +18,7 @@ variable "BGP_Password" {
 
 variable "kubernetes_version" {
   description = "Kubernetes Version"
-  default     = "1.23.4"
+  default     = "1.24.1"
 }
 
 variable "calico_version" {
