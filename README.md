@@ -7,9 +7,9 @@ This guide can be used as a reference to deploy Kubernetes on Equinix Metal bare
 
 | Component  | Version |
 | ---------- | ------- |
-| Kubernetes | v1.23.4 |
-| Calico     | v3.22.0 |
-| CCM        | v3.2.2  |
+| Kubernetes | v1.24.1 |
+| Calico     | v3.23.0 |
+| CCM        | v3.4.2  |
 | MetalLB    | v0.12.1 |
 | Kube-VIP   | v0.4.2  |
 | Rook-Ceph  | v1.8.5  |
