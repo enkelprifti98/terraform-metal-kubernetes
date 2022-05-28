@@ -32,8 +32,8 @@ resource "null_resource" "setup_worker" {
   }
 
   provisioner "file" {
-    content     = data.template_file.install_docker.rendered
-    destination = "/tmp/install-docker.sh"
+    content     = data.template_file.install_cri.rendered
+    destination = "/tmp/install-cri.sh"
   }
 
   provisioner "file" {
@@ -50,7 +50,7 @@ resource "null_resource" "setup_worker" {
     inline = [
       "chmod +x /tmp/*.sh",
       "/tmp/setup-base.sh",
-      "/tmp/install-docker.sh",
+      "/tmp/install-cri.sh",
       "/tmp/setup-kube.sh",
       data.external.kubeadm_join.result.command,
 
