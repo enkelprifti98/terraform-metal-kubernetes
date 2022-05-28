@@ -50,13 +50,9 @@ variable "worker_plan" {
   default     = "c3.medium.x86"
 }
 
-// General template used to install docker
-data "template_file" "install_docker" {
-  template = file("${path.module}/templates/install-docker.sh.tpl")
-
-  vars = {
-    docker_version = var.docker_version
-  }
+// General template used to install the container runtime interface
+data "template_file" "install_cri" {
+  template = file("${path.module}/templates/install-cri.sh.tpl")
 }
 
 data "template_file" "install_kubernetes" {
