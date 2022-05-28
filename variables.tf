@@ -16,10 +16,6 @@ variable "BGP_Password" {
   default = ""
 }
 
-variable "docker_version" {
-  default = "20.10.12"
-}
-
 variable "kubernetes_version" {
   description = "Kubernetes Version"
   default     = "1.23.4"
