@@ -9,7 +9,6 @@ echo "[----- Setting up Kubernetes using kubeadm ----]"
 kubeadm init \
 --apiserver-advertise-address $LOCAL_IP \
 --apiserver-bind-port ${kubernetes_port} \
---cri-socket /var/run/dockershim.sock \
 --image-repository k8s.gcr.io \
 --kubernetes-version v${kubernetes_version} \
 --node-name $HOSTNAME \
