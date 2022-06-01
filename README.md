@@ -93,6 +93,8 @@ worker_count = 3
 
 Note: There is also a `terraform.tfvars.sample.custom` file in this repo that you can use. It has more configuration options for the cluster.
 
+## Deploy the cluster
+
 Run the Terraform script to deploy the cluster:
 
 ```sh
@@ -100,6 +102,8 @@ terraform apply
 ```
 
 Once the script has completed, you will be given the controller and node addresses.
+
+## Testing
 
 You can now use the kubernetes service type `LoadBalancer` and you will be assigned a Public External IP.
 
