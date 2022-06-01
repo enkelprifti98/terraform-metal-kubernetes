@@ -33,7 +33,7 @@ variable "calicoctl_version" {
 
 variable "ccm_release" {
   description = "Equinix Metal CCM Version"
-  default     = "v3.4.2"
+  default     = "v3.4.3"
 }
 
 variable "service_loadbalancer" {
