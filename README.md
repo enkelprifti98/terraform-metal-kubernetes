@@ -12,7 +12,7 @@ This guide can be used as a reference to deploy Kubernetes on Equinix Metal bare
 | CCM        | v3.4.3  |
 | MetalLB    | v0.12.1 |
 | Kube-VIP   | v0.4.2  |
-| Rook-Ceph  | v1.8.5  |
+| Rook-Ceph  | v1.9.4  |
 
 Kubernetes Network:
 
