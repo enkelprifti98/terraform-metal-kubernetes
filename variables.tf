@@ -58,7 +58,7 @@ variable "storage" {
 
 variable "rook_ceph_version" {
   description = "Rook Ceph Version"
-  default     = "v1.8.5"
+  default     = "v1.9.4"
 }
 
 variable "kubernetes_port" {
