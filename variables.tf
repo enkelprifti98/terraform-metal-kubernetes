@@ -23,12 +23,12 @@ variable "kubernetes_version" {
 
 variable "calico_version" {
   description = "Calico Version"
-  default     = "v3.23"
+  default     = "v3.24.1"
 }
 
 variable "calicoctl_version" {
   description = "Calicoctl Version"
-  default     = "v3.23.0"
+  default     = "v3.24.1"
 }
 
 variable "ccm_release" {
