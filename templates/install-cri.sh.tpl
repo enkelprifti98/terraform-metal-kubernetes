@@ -63,5 +63,12 @@ mkdir -p /etc/containerd
 containerd config default | sudo tee /etc/containerd/config.toml
 systemctl restart containerd
 
+cat <<EOF | sudo tee /etc/crictl.yaml
+runtime-endpoint: unix:///run/containerd/containerd.sock
+image-endpoint: unix:///run/containerd/containerd.sock
+timeout: 2
+debug: false
+pull-image-on-create: true
+EOF
 
 echo "[----- install-cri.sh Complete ------]"
