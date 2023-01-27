@@ -2,6 +2,8 @@ resource "null_resource" "rook_ceph" {
 
   count = var.storage == "rook-ceph" ? 1 : 0
 
+  depends_on = [null_resource.setup_worker]
+  
   connection {
     type = "ssh"
     user = "root"
@@ -49,7 +51,7 @@ resource "null_resource" "rook_ceph" {
     ]
   }
 
-  provisioner "file" {
+  /*provisioner "file" {
     source      = "${path.module}/templates/wait-for-rook-ceph-cluster-creation.sh.tpl"
     destination = "/tmp/wait-for-rook-ceph-cluster-creation.sh"
   }
@@ -60,7 +62,6 @@ resource "null_resource" "rook_ceph" {
       "chmod +x /tmp/wait-for-rook-ceph-cluster-creation.sh",
       "/tmp/wait-for-rook-ceph-cluster-creation.sh"
     ]
-  }
+  }*/
 
-  depends_on = [null_resource.setup_worker]
 }
