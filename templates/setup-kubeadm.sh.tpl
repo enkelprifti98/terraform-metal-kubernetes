@@ -4,6 +4,11 @@
 HOSTNAME=$(hostname -s)
 LOCAL_IP=$(ip a | grep "inet 10" | cut -d" " -f6 | cut -d"/" -f1)
 
+# Fixes the coredns image path issue which still happens
+# https://github.com/kubernetes/kubernetes/issues/112131
+crictl pull k8s.gcr.io/coredns/coredns:v1.9.3
+ctr --namespace=k8s.io image tag k8s.gcr.io/coredns/coredns:v1.9.3 k8s.gcr.io/coredns:v1.9.3
+
 echo "[----- Setting up Kubernetes using kubeadm ----]"
 
 kubeadm init \
