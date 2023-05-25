@@ -7,7 +7,7 @@ resource "null_resource" "rook_ceph" {
   connection {
     type = "ssh"
     user = "root"
-    host = metal_device.k8s_controller.access_public_ipv4
+    host = equinix_metal_device.k8s_controller.access_public_ipv4
     private_key = tls_private_key.k8s_cluster_access_key.private_key_pem
   }
 

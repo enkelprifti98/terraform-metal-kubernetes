@@ -3,11 +3,11 @@ variable "hostname" {
 }
 
 // Setup the kubernetes controller node
-resource "metal_device" "k8s_controller" {
-  project_id       = metal_project.kubenet.id
+resource "equinix_metal_device" "k8s_controller" {
+  project_id       = equinix_metal_project.kubenet.id
   metro            = var.metro
   plan             = var.controller_plan
-  operating_system = "ubuntu_20_04"
+  operating_system = "ubuntu_22_04"
   hostname         = format("%s-%s", var.metro, var.hostname)
   billing_cycle    = "hourly"
   tags             = ["kubernetes", "k8s", "controller"]
@@ -15,7 +15,7 @@ resource "metal_device" "k8s_controller" {
   connection {
     type = "ssh"
     user = "root"
-    host = metal_device.k8s_controller.access_public_ipv4
+    host = equinix_metal_device.k8s_controller.access_public_ipv4
     private_key = tls_private_key.k8s_cluster_access_key.private_key_pem
   }
 
@@ -50,8 +50,8 @@ resource "metal_device" "k8s_controller" {
   }
 }
 
-resource "metal_bgp_session" "controller_bgp" {
-  device_id      = metal_device.k8s_controller.id
+resource "equinix_metal_bgp_session" "controller_bgp" {
+  device_id      = equinix_metal_device.k8s_controller.id
   address_family = "ipv4"
 }
 
@@ -59,11 +59,11 @@ data "external" "kubeadm_join" {
   program = ["${path.module}/scripts/kubeadm-token.sh"]
 
   query = {
-    host = metal_device.k8s_controller.access_public_ipv4
+    host = equinix_metal_device.k8s_controller.access_public_ipv4
   }
 
   # Make sure to only run this after the controller is up and setup
-  depends_on = [metal_device.k8s_controller]
+  depends_on = [equinix_metal_device.k8s_controller]
 }
 
 data "template_file" "setup_kubeadm" {

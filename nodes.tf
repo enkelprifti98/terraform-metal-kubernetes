@@ -1,17 +1,17 @@
-resource "metal_device" "k8s_workers" {
-  project_id       = metal_project.kubenet.id
+resource "equinix_metal_device" "k8s_workers" {
+  project_id       = equinix_metal_project.kubenet.id
   metro            = var.metro
   count            = var.worker_count
   plan             = var.worker_plan
-  operating_system = "ubuntu_20_04"
+  operating_system = "ubuntu_22_04"
   hostname         = format("%s-%s-%d", var.metro, "worker", count.index)
   billing_cycle    = "hourly"
-  tags             = ["kubernetes", "k8s", "worker"]
+  tags             = ["kubernetes", "k8s", "worker", "k8s-cluster-cluster1", "k8s-nodepool-pool1"]
 }
 
-resource "metal_bgp_session" "workers_bgp" {
+resource "equinix_metal_bgp_session" "workers_bgp" {
   count          = var.worker_count
-  device_id      = element(metal_device.k8s_workers.*.id, count.index)
+  device_id      = element(equinix_metal_device.k8s_workers.*.id, count.index)
   address_family = "ipv4"
 }
 
@@ -22,7 +22,7 @@ resource "null_resource" "setup_worker" {
   connection {
     type = "ssh"
     user = "root"
-    host = element(metal_device.k8s_workers.*.access_public_ipv4, count.index)
+    host = element(equinix_metal_device.k8s_workers.*.access_public_ipv4, count.index)
     private_key = tls_private_key.k8s_cluster_access_key.private_key_pem
   }
 
@@ -72,7 +72,7 @@ resource "null_resource" "setup_worker" {
     connection {
       type = "ssh"
       user = "root"
-      host = metal_device.k8s_controller.access_public_ipv4
+      host = equinix_metal_device.k8s_controller.access_public_ipv4
       private_key = tls_private_key.k8s_cluster_access_key.private_key_pem
     }
   }
@@ -84,6 +84,6 @@ data "external" "private_ipv4_gateway" {
   program = ["${path.module}/scripts/gateway.sh"]
 
   query = {
-    host = element(metal_device.k8s_workers.*.access_public_ipv4, count.index)
+    host = element(equinix_metal_device.k8s_workers.*.access_public_ipv4, count.index)
   }
 }

@@ -1,7 +1,7 @@
 terraform {
  required_providers {
-    metal = {
-      source = "equinix/metal"
+    equinix = {
+      source = "equinix/equinix"
 # Version is not required, not specifying it will use the latest provider version
 #      version = "2.7.4"
     }
@@ -10,11 +10,11 @@ terraform {
 #  required_version = ">= 0.13"
 }
 
-provider "metal" {
+provider "equinix" {
   auth_token = var.auth_token
 }
 
-resource "metal_project" "kubenet" {
+resource "equinix_metal_project" "kubenet" {
   organization_id = var.organization_id
   
   name = var.project_name
@@ -27,7 +27,7 @@ resource "metal_project" "kubenet" {
   
 }
 
-resource "metal_ssh_key" "k8s-cluster-key" {
+resource "equinix_metal_ssh_key" "k8s-cluster-key" {
   name       = "k8s-bgp-cluster-access-key"
   public_key = tls_private_key.k8s_cluster_access_key.public_key_openssh
 }

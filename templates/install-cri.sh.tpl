@@ -11,23 +11,27 @@ apt-get update \
   apt-transport-https \
   ca-certificates \
   curl \
-  software-properties-common
+  software-properties-common \
+  gnupg \
+  lsb-release
 
 echo "[----- Begin installing Docker CE ----]"
 
 ### Add Docker’s official GPG key
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
+sudo install -m 0755 -d /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+sudo chmod a+r /etc/apt/keyrings/docker.gpg
 
 ### Add Docker apt repository
-add-apt-repository \
-  "deb [arch=amd64] https://download.docker.com/linux/$(. /etc/os-release; echo "$ID") \
-  $(lsb_release -cs) \
-  stable"
+echo \
+  "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+  "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 
 ## Install Docker CE
 apt-get update \
   && apt-get install -y \
-  docker-ce
+  docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
 # Setup daemon
 cat > /etc/docker/daemon.json <<EOF
@@ -61,7 +65,9 @@ sudo modprobe br_netfilter
 
 mkdir -p /etc/containerd
 containerd config default | sudo tee /etc/containerd/config.toml
+sed -i 's/SystemdCgroup \= false/SystemdCgroup \= true/g' /etc/containerd/config.toml
 systemctl restart containerd
+systemctl enable containerd
 
 cat <<EOF | sudo tee /etc/crictl.yaml
 runtime-endpoint: unix:///run/containerd/containerd.sock

@@ -19,7 +19,7 @@ stringData:
       "apiKey": "${API-TOKEN}",
       "projectID": "${PROJECT-ID}",
       "metro": "${METRO}",
-      "loadbalancer": "metallb:///?crdConfiguration=true"
+      "loadbalancer": "metallb:///?crdConfiguration=false"
     }
 EOF
 
@@ -30,4 +30,18 @@ kubectl apply -f https://github.com/equinix/cloud-provider-equinix-metal/release
 
 echo "[----- Setting up MetalLB ----]"
 
-kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/${METALLB-RELEASE}/config/manifests/metallb-native.yaml
+kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/${METALLB-RELEASE}/manifests/namespace.yaml
+kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/${METALLB-RELEASE}/manifests/metallb.yaml
+
+cat <<EOF >metallb-configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: metallb-system
+  name: config
+data:
+  config: |
+    peers:
+EOF
+
+kubectl apply -f metallb-configmap.yaml

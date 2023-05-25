@@ -6,7 +6,7 @@ data "template_file" "setup_ccm_kubevip" {
 
   vars = {
     API-TOKEN         = var.auth_token
-    PROJECT-ID        = metal_project.kubenet.id
+    PROJECT-ID        = equinix_metal_project.kubenet.id
     METRO             = var.metro
     CCM-RELEASE       = var.ccm_release
     KUBE-VIP-RELEASE  = var.kube_vip_release
@@ -20,7 +20,7 @@ resource "null_resource" "ccm_kubevip" {
   connection {
     type = "ssh"
     user = "root"
-    host = metal_device.k8s_controller.access_public_ipv4
+    host = equinix_metal_device.k8s_controller.access_public_ipv4
     private_key = tls_private_key.k8s_cluster_access_key.private_key_pem
   }
 
