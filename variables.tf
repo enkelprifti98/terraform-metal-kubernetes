@@ -18,7 +18,7 @@ variable "BGP_Password" {
 
 variable "kubernetes_version" {
   description = "Kubernetes Version"
-  default     = "1.27.1"
+  default     = "1.30.3"
 }
 
 variable "cni" {
@@ -28,27 +28,27 @@ variable "cni" {
 
 variable "calico_version" {
   description = "Calico Version"
-  default     = "v3.25.1"
+  default     = "v3.28.1"
 }
 
 variable "calicoctl_version" {
   description = "Calicoctl Version"
-  default     = "v3.25.1"
+  default     = "v3.28.1"
 }
 
 variable "cilium_cli_version" {
   description = "Cilium CLI Version used to install Cilium CNI"
-  default     = "v0.14.2"
+  default     = "v0.16.15"
 }
 
 variable "cilium_version" {
   description = "Cilium Version"
-  default     = "v1.13.2"
+  default     = "v1.16.0"
 }
 
 variable "ccm_release" {
   description = "Equinix Metal CCM Version"
-  default     = "v3.5.0"
+  default     = "v3.8.1"
 }
 
 variable "service_loadbalancer" {
@@ -58,12 +58,12 @@ variable "service_loadbalancer" {
 
 variable "kube_vip_release" {
   description = "Kube-VIP Version"
-  default     = "v0.4.2"
+  default     = "v0.8.0"
 }
 
 variable "metallb_release" {
   description = "MetalLB Version"
-  default     = "v0.12.1"
+  default     = "v0.14.8"
 }
 
 variable "storage" {
@@ -73,7 +73,7 @@ variable "storage" {
 
 variable "rook_ceph_version" {
   description = "Rook Ceph Version"
-  default     = "v1.11.4"
+  default     = "v1.14.9"
 }
 
 variable "kubernetes_port" {
