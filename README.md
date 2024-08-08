@@ -111,7 +111,7 @@ You can now use the kubernetes service type `LoadBalancer` and you will be assig
 
 For example, we can deploy wordpress which makes use of service type `LoadBalancer` along with persistent volume claims.
  
-Here we are using the deployment from the rook-ceph [guide](https://rook.io/docs/rook/v1.7/ceph-block.html#consume-the-storage-wordpress-sample).
+Here we are using the deployment from the rook-ceph [guide](https://rook.io/docs/rook/v1.14/Storage-Configuration/Block-Storage-RBD/block-storage/#consume-the-storage-wordpress-sample).
 
 Run the following:
 
