@@ -7,13 +7,13 @@ This guide can be used as a reference to deploy Kubernetes on Equinix Metal bare
 
 | Component  | Version  |
 | ---------- | -------- |
-| Kubernetes | v1.27.1  |
-| Cilium     | v1.13.2  |
-| Calico     | v3.25.1  |
-| CCM        | v3.6.2   |
-| MetalLB    | v0.13.9  |
-| Kube-VIP   | v0.5.12  |
-| Rook-Ceph  | v1.11.6  |
+| Kubernetes | v1.30.3  |
+| Cilium     | v1.16.0  |
+| Calico     | v3.28.1  |
+| CCM        | v3.8.1   |
+| MetalLB    | v0.14.8  |
+| Kube-VIP   | v0.8.0   |
+| Rook-Ceph  | v1.14.9  |
 | Autoscaler | v1.27.1  |
 
 Kubernetes Network:
