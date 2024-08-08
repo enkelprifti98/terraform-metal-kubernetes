@@ -53,7 +53,7 @@ variable "ccm_release" {
 
 variable "service_loadbalancer" {
   description = "Kubernetes Service Load Balancer, choice of Kube-VIP, MetalLB, MetalLB-legacy (for versions <= 0.12.1) or empty string for none"
-  default     = "MetalLB-legacy"
+  default     = "MetalLB"
 }
 
 variable "kube_vip_release" {
